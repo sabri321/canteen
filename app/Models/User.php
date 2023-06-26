@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     protected $guarded = ['$id'];
 
-
+    
     //relasi users ke product ( satu user memiliki banyak product)
     public function product(){
         return $this->hasMany(Product::class);

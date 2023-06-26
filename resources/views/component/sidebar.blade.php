@@ -73,22 +73,17 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="layouts-without-menu.html" class="menu-link">
-                        <div data-i18n="Without menu">Register User</div>
+                    <a href="/tenant/create" class="menu-link">
+                        <div data-i18n="Without navbar">Register</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="layouts-without-navbar.html" class="menu-link">
-                        <div data-i18n="Without navbar">Data Administrator</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="layouts-without-navbar.html" class="menu-link">
+                    <a href="/tenant" class="menu-link">
                         <div data-i18n="Without navbar">Data Tenant</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="layouts-without-navbar.html" class="menu-link">
+                    <a href="/member" class="menu-link">
                         <div data-i18n="Without navbar">Data Member</div>
                     </a>
                 </li>
@@ -113,6 +108,13 @@
             </ul>
         </li>
         <!-- Cards -->
+
+        <li class="menu-item">
+            <a href="/product" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Product</div>
+            </a>
+        </li>
         <li class="menu-item">
             <a href="cards-basic.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
@@ -126,22 +128,10 @@
             </a>
         </li>
         <li class="menu-item">
-          <a href="cards-basic.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-user"></i>
-              <div data-i18n="Basic">My Profile</div>
-          </a>
-      </li>
-      <li class="menu-item">
-        <a href="cards-basic.html" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-cog"></i>
-            <div data-i18n="Basic">Setting</div>
-        </a>
-    </li>
-    <li class="menu-item">
-      <a href="cards-basic.html" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-power-off"></i>
-          <div data-i18n="Basic">Logout</div>
-      </a>
-  </li>
+            <a href="cards-basic.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cog"></i>
+                <div data-i18n="Basic">Setting</div>
+            </a>
+        </li>
     </ul>
 </aside>

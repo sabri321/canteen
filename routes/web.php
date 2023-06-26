@@ -38,6 +38,18 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 //halaman dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-Route::resource('/user', 'Backend\UserController');
+Route::resource('/product', 'DashboardProductController')->middleware('tenant');
+
+
+//user tenant
+Route::resource('/tenant', 'Backend\TenantController')->middleware('admin');
+
+
+//user member
+Route::resource('/member', 'Backend\MemberController')->middleware('admin');
+
+
+
+
 
 

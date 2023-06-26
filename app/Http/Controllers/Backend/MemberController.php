@@ -3,16 +3,21 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('user/index');
+        $role = 'Member';
+        $user = User::where('role', $role)->get();
+        return view('member/index', [
+            'member' => $user
+        ]);  
     }
 
     /**
