@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Doze Cafe</title>
+    <title>Canteen</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -35,7 +35,7 @@
     <div class="header_section">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand"href="index.html"><img src="{{ asset('home page') }}/images/logo.png"></a>
+                <a class="navbar-brand"href="index.html"><img src="{{ asset('home page') }}/images/logo1.gif"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -84,10 +84,38 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="banner_taital_main">
-                                        <h1 class="banner_taital">coffee</h1>
-                                        <h5 class="tasty_text">Tasty Of DozeCafe</h5>
-                                        <p class="banner_text">more-or-less normal distribution of letters, as opposed
-                                            to using </p>
+                                        <h1 class="banner_taital">SMAN 1 Mataram</h1>
+                                        <h5 class="tasty_text">Kantin Sehat</h5>
+                                        <p class="banner_text">Kantin sehat adalah sebuah konsep kantin di sekolah
+                                            yang menawarkan makanan dan minuman sehat kepada para
+                                            siswa. Konsep ini bertujuan untuk mempromosikan gaya
+                                            hidup sehat dan memastikan bahwa siswa memiliki akses
+                                            terhadap makanan yang bergizi dan bermanfaat bagi
+                                            kesehatan mereka. </p>
+                                        <div class="btn_main">
+                                            <div class="about_bt"><a href="#">About Us</a></div>
+                                            <div class="callnow_bt active"><a href="#">Call Now</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="banner_img"><img src="{{ asset('home page') }}/images/mie-ayam.gif">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="banner_taital_main">
+                                        <h1 class="banner_taital">SMAN 1 Mataram</h1>
+                                        <h5 class="tasty_text">Kantin Sehat</h5>
+                                        <p class="banner_text">Kantin sehat adalah sebuah konsep kantin di sekolah
+                                            yang menawarkan makanan dan minuman sehat kepada para
+                                            siswa. Konsep ini bertujuan untuk mempromosikan gaya
+                                            hidup sehat dan memastikan bahwa siswa memiliki akses
+                                            terhadap makanan yang bergizi dan bermanfaat bagi
+                                            kesehatan mereka. </p>
                                         <div class="btn_main">
                                             <div class="about_bt"><a href="#">About Us</a></div>
                                             <div class="callnow_bt active"><a href="#">Call Now</a></div>
@@ -104,30 +132,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="banner_taital_main">
-                                        <h1 class="banner_taital">coffee</h1>
-                                        <h5 class="tasty_text">Tasty Of DozeCafe</h5>
-                                        <p class="banner_text">more-or-less normal distribution of letters, as opposed
-                                            to using </p>
-                                        <div class="btn_main">
-                                            <div class="about_bt"><a href="#">About Us</a></div>
-                                            <div class="callnow_bt active"><a href="#">Call Now</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="banner_img"><img src="{{ asset('home page') }}/images/banner-img.png">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="banner_taital_main">
-                                        <h1 class="banner_taital">coffee</h1>
-                                        <h5 class="tasty_text">Tasty Of DozeCafe</h5>
-                                        <p class="banner_text">more-or-less normal distribution of letters, as opposed
-                                            to using </p>
+                                        <h1 class="banner_taital">SMAN 1 Mataram</h1>
+                                        <h5 class="tasty_text">Kantin Sehat</h5>
+                                        <p class="banner_text">Kantin sehat adalah sebuah konsep kantin di sekolah
+                                            yang menawarkan makanan dan minuman sehat kepada para
+                                            siswa. Konsep ini bertujuan untuk mempromosikan gaya
+                                            hidup sehat dan memastikan bahwa siswa memiliki akses
+                                            terhadap makanan yang bergizi dan bermanfaat bagi
+                                            kesehatan mereka. </p>
                                         <div class="btn_main">
                                             <div class="about_bt"><a href="#">About Us</a></div>
                                             <div class="callnow_bt active"><a href="#">Call Now</a></div>
@@ -153,7 +165,7 @@
     <div class="coffee_section layout_padding">
         <div class="container">
             <div class="row">
-                <h1 class="coffee_taital">OUR Coffee OFFER</h1>
+                <h1 class="coffee_taital">PRODUCT</h1>
                 <div class="bulit_icon"><img src="{{ asset('home page') }}/images/bulit-icon.png"></div>
             </div>
         </div>

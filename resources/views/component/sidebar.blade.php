@@ -73,18 +73,13 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="/tenant/create" class="menu-link">
+                    <a href="/users/create" class="menu-link">
                         <div data-i18n="Without navbar">Register</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/tenant" class="menu-link">
-                        <div data-i18n="Without navbar">Data Tenant</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/member" class="menu-link">
-                        <div data-i18n="Without navbar">Data Member</div>
+                    <a href="/users" class="menu-link">
+                        <div data-i18n="Without navbar">Data Users</div>
                     </a>
                 </li>
             </ul>

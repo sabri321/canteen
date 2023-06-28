@@ -41,12 +41,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 Route::resource('/product', 'DashboardProductController')->middleware('tenant');
 
 
-//user tenant
-Route::resource('/tenant', 'Backend\TenantController')->middleware('admin');
+//users
+Route::resource('/users', 'Backend\UserController')->middleware('admin');
 
-
-//user member
-Route::resource('/member', 'Backend\MemberController')->middleware('admin');
 
 
 
