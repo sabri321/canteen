@@ -33,7 +33,7 @@
                         <label class="col-sm-2 col-form-label" for="basic-default-password12">Password</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" aria-describedby="password" value="{{ old('password', $users->getOriginal('password')) }}">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" aria-describedby="password"">
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
@@ -53,15 +53,6 @@
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
                                 <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" aria-label="ACME Inc." aria-describedby="basic-icon-default-company2" value="{{ old('phone', $users->phone) }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Deposit</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
-                                <input type="number" name="deposit" id="deposit" class="form-control" placeholder="Deposit" aria-label="ACME Inc." aria-describedby="basic-icon-default-company2" value="{{ old('deposit', $users->deposit) }}">
                             </div>
                         </div>
                     </div>

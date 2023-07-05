@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +16,6 @@ class UserController extends Controller
     {
         // Mendapatkan semua data pengguna (users) dari database
         $users = User::all();
-
         // Mengirimkan data pengguna ke view 'users.index'
         return view('users.index', compact('users'));
     }
@@ -35,7 +35,6 @@ class UserController extends Controller
             'password' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'deposit' => 'required',
             'role' => 'required|in:Administrator,Tenant,Member',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -64,6 +63,11 @@ class UserController extends Controller
         return view('users.edit', compact('users'));
     }
 
+    // function getme(){
+    //     $data = Auth::user();
+    //     return $data;
+    // }
+
 
     public function update(Request $request, User $user)
     {
@@ -73,7 +77,6 @@ class UserController extends Controller
             'password' => 'nullable',
             'address' => 'required',
             'phone' => 'required',
-            'deposit' => 'required',
             'role' => 'required|in:Administrator,Tenant,Member',
         ]);
 

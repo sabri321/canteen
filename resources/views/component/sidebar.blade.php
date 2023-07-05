@@ -57,76 +57,109 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active">
-            <a href="index.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-            </a>
-        </li>
 
-        <!-- Layouts -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Layouts">Master User</div>
-            </a>
 
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="/users/create" class="menu-link">
-                        <div data-i18n="Without navbar">Register</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/users" class="menu-link">
-                        <div data-i18n="Without navbar">Data Users</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-chart"></i>
-                <div data-i18n="Account Settings">Transaction</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
-                        <div data-i18n="Account">Tenant</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
-                        <div data-i18n="Notifications">Member</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <!-- Cards -->
 
-        <li class="menu-item">
-            <a href="/product" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Product</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Category</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-money"></i>
-                <div data-i18n="Basic">History Deposit</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-cog"></i>
-                <div data-i18n="Basic">Setting</div>
-            </a>
-        </li>
+        @if (Auth::user()->role == 'Tenant')
+            <li class="menu-item">
+                <a href="/dashboard" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div data-i18n="Analytics">Dashboard</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="/product" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-collection"></i>
+                    <div data-i18n="Basic">Product</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-collection"></i>
+                    <div data-i18n="Basic">Transaksi</div>
+                </a>
+            </li>
+        @endif
+
+
+        @if (Auth::user()->role == 'Administrator')
+            <li class="menu-item">
+                <a href="/dashboard" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div data-i18n="Analytics">Dashboard</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-user"></i>
+                    <div data-i18n="Layouts">Master User</div>
+                </a>
+
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="/users/create" class="menu-link">
+                            <div data-i18n="Without navbar">Register</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/users" class="menu-link">
+                            <div data-i18n="Without navbar">Data Users</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-chart"></i>
+                    <div data-i18n="Account Settings">Transaction</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="pages-account-settings-account.html" class="menu-link">
+                            <div data-i18n="Account">Tenant</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="pages-account-settings-notifications.html" class="menu-link">
+                            <div data-i18n="Notifications">Member</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="/category" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-collection"></i>
+                    <div data-i18n="Basic">Category</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="/deposit" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-money"></i>
+                    <div data-i18n="Basic">History Deposit</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="cards-basic.html" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-cog"></i>
+                    <div data-i18n="Basic">Setting</div>
+                </a>
+            </li>
+        @endif
+
+
+        @if (Auth::user()->role == 'Member')
+            <li class="menu-item">
+                <a href="/dashboard" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div data-i18n="Analytics">Dashboard</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-collection"></i>
+                    <div data-i18n="Basic">Transaksi</div>
+                </a>
+            </li>
+        @endif
     </ul>
 </aside>

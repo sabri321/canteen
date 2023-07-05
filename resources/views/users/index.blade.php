@@ -16,18 +16,23 @@
                             <th>No</th>
                             <th>Name</th>
                             <th>Username</th>
-                            <th>Phone</th>
+                            <th>Deposit</th>
                             <th>Role</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $item)
+                        @php
+                            $sortedUsers = $users->sortBy(function ($user) {
+                                return $user->role;
+                            });
+                        @endphp
+                        @foreach ($sortedUsers as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->username }}</td>
-                                <td>{{ $item->phone }}</td>
+                                <td>{{ $item->deposithistory->sum('nominal') }}</td>
                                 <td>{{ $item->role }}</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" href="/users/{{ $item->id }}/edit">

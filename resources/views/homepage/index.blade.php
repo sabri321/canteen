@@ -47,7 +47,7 @@
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="coffees.html">Product</a>
+                            <a class="nav-link" href="list/product">Product</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="shop.html">Information</a>
@@ -175,102 +175,15 @@
                     <div class="carousel-item active">
                         <div class="container-fluid">
                             <div class="row">
+                                @foreach ($product as $item)      
                                 <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-1.png">
+                                    <div class="coffee_img"><img src="{{ asset('storage/' . $item->image) }}">
                                     </div>
-                                    <h3 class="types_text">TYPES OF COFFEE</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
+                                    <h3 class="types_text">{{ $item->name }}</h3>
+                                    <p class="looking_text">Rp. {{ $item->price }}</p>
+                                    <div class="read_bt"><a href="#">Pesan</a></div>
                                 </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-2.png">
-                                    </div>
-                                    <h3 class="types_text">BEAN VARIETIES</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-3.png">
-                                    </div>
-                                    <h3 class="types_text">COFFEE & PASTRY</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-4.png">
-                                    </div>
-                                    <h3 class="types_text">COFFEE TO GO</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-1.png">
-                                    </div>
-                                    <h3 class="types_text">TYPES OF COFFEE</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-2.png">
-                                    </div>
-                                    <h3 class="types_text">BEAN VARIETIES</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-3.png">
-                                    </div>
-                                    <h3 class="types_text">COFFEE & PASTRY</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-4.png">
-                                    </div>
-                                    <h3 class="types_text">COFFEE TO GO</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-1.png">
-                                    </div>
-                                    <h3 class="types_text">TYPES OF COFFEE</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-2.png">
-                                    </div>
-                                    <h3 class="types_text">BEAN VARIETIES</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-3.png">
-                                    </div>
-                                    <h3 class="types_text">COFFEE & PASTRY</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('home page') }}/images/img-4.png">
-                                    </div>
-                                    <h3 class="types_text">COFFEE TO GO</h3>
-                                    <p class="looking_text">looking at its layout. The point of</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

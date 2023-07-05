@@ -33,4 +33,6 @@ class User extends Authenticatable
     public function detailtransaction(){
         return $this->hasMany(DetailTransaction::class);
     }
+
+    
 }

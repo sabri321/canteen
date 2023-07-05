@@ -9,6 +9,10 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'user_id','status'
+    ];
+
     //relasi transaction ke user ( satu transaksi di miliki satu user)
     public function user(){
         return $this->belongsTo(User::class);

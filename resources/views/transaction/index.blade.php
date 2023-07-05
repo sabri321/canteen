@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>INI HALAMAN HOME</h1>
+<h1>halaman transaction</h1>
 </body>
 </html>

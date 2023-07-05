@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone')->nullable();;
             $table->integer('deposit')->nullable();
             $table->string('image')->nullable();
-            $table->enum('role', ['Administrator', 'Tenant', 'Member']);
+            $table->enum('role', ['Administrator', 'Tenant', 'Member'])->default('Member');;
             $table->timestamps();
         });
     }

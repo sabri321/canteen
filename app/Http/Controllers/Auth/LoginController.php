@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
+
 class LoginController extends Controller
 {
     public function index()
     {
         return view('/auth/login');
     }
+
+
 
     public function store(Request $request)
     {
@@ -21,12 +24,25 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if(Auth::attempt($data)){
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+        $credentials = [
+            'username' => $data['username'],
+            'password' => $data['password']
+        ];
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if ($user->role == 'Administrator') {
+                return redirect('/dashboard/administrator');
+            } elseif ($user->role == 'Tenant') {
+                return redirect('/dashboard/tenant');
+            } elseif ($user->role == 'Member') {
+                return redirect('/dashboard/member');
+            }
         }
-        return back()->with('login gagals');
+
+        return redirect('dashboard')->withErrors('Username dan password yang dimasukkan salah')->withInput();
     }
+
 
     public function logout(Request $request)
     {
@@ -35,7 +51,5 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
-
-
     }
 }
