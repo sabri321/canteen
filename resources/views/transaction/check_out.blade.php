@@ -43,7 +43,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        
                         <li class="nav-item">
                             @php
                                 use Illuminate\Support\Facades\Auth;
@@ -51,16 +50,12 @@
                                     ->transaction()
                                     ->where('status', 0)
                                     ->first();
-                                if (!empty($pesanan_utama)) {
-                                    $notif = $pesanan_utama ? $pesanan_utama->detailtransaction->count() : 0;
-                                }
+                                $notif = $pesanan_utama ? $pesanan_utama->detailtransaction->count() : 0;
                             @endphp
-  
+
                             <a class="nav-link" href="{{ url('check-out') }}">
                                 <i class="fa fa-shopping-cart"></i>
-                                @if (!empty($notif))
-                                    <span class="badge badge-danger">{{ $notif }}</span>
-                                @endif
+                                <span class="badge badge-danger">{{ $notif }}</span>
                             </a>
 
                             <li class="nav-item">
@@ -68,12 +63,11 @@
                                     History</a>
                             </li>
 
-
                         </li>
 
                         @Auth
                             <li class="nav-item">
-                                <a class="nav-link" href="/dashboard"><i aria-hidden="true"></i>
+                                <a class="nav-link" href="/dashboard"><i class="fa fa-home"aria-hidden="true"></i>
                                     Dashboard</a>
                             </li>
                         @else
@@ -91,55 +85,66 @@
     <div class="coffee_section layout_padding">
         <div class="col-md-12">
             <div class="card">
-                <div class="row">
-                    <h1 class="coffee_taital">PESANAN</h1>
-                    <div class="bulit_icon"><img src="{{ asset('home page') }}/images/bulit-icon.png"></div>
-                </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="{{ asset('storage/' . $product->image) }}" class="rounded mx-auto d-block"
-                                width="75%" alt="">
-                        </div>
-                        <div class="col-md-6 mt-5">
-                            <h2>{{ $product->name }}</h2>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>Price</td>
-                                        <td>:</td>
-                                        <td>Rp. {{ number_format($product->price) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Qty</td>
-                                        <td>:</td>
-                                        <td>{{ $product->qty }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jumlah Pesan</td>
-                                        <td>:</td>
-                                        <td>
-                                            <form action="/transaction/{{ $product->id }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <input type="text" name="jumlah_pesan" class="form-control"
-                                                    required="">
-                                                <button type="submit" class="btn btn-primary mt-2"><i
-                                                        class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
-                                            </form>
+                    <h3><i class="fa fa-shopping-cart"></i> Check Out</h3>
+                    @if(!empty($transaction))
+                        
+                    @foreach ($detail_transaction as $item)
+                        <td>Date Check out : {{ $item->created_at }}</td>
+                    @endforeach
+                    <table class="table table-striped">
 
-                                        </td>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>name</th>
+                                <th>Jumlah</th>
+                                <th>Price</th>
+                                <th>Total Bayar</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
+                            <?php $no = 1; ?>
+                            @foreach ($detail_transaction as $item)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $item->product->name }}</td>
+                                    <td>{{ $item->qty }}</td>
+                                    <td>Rp. {{ number_format($item->product->price) }}</td>
+                                    <td>Rp. {{ number_format($item->total_harga) }}</td>
+                                    <td>
+                                        <form action="/check-out/{{ $item->id }}" method="post">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Anda yakin akan menghapus data ?');"><i
+                                                    class="fa fa-trash"></i>Delete</button>
+                                        </form>
+                                    </td>
 
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="4"><strong>Total Bayar :</strong></td>
+                                <td><strong>Rp. {{ number_format($transaction->total_bayar) }}</strong></td>
+                                <td>
+                                    <a href="{{ url('konfirmasi-check-out') }}" class="btn btn-success"
+                                        onclick="return confirm('Anda yakin akan Check Out ?');">
+                                        <i class="fa fa-shopping-cart"></i> Check Out
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+
+
 
 
     <div class="copyright_section">
@@ -164,7 +169,6 @@
     </div>
     <!-- copyright section end -->
     <!-- Javascript files-->
-
 
     <script src="{{ asset('home page') }}/js/jquery.min.js"></script>
     <script src="{{ asset('home page') }}/js/popper.min.js"></script>

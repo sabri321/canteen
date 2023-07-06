@@ -47,7 +47,7 @@
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="list/product">Product</a>
+                            <a class="nav-link" href="coffees.html">Product</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="shop.html">Information</a>
@@ -175,14 +175,14 @@
                     <div class="carousel-item active">
                         <div class="container-fluid">
                             <div class="row">
-                                @foreach ($product as $item)      
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('storage/' . $item->image) }}">
+                                @foreach ($product as $item)
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="coffee_img"><img src="{{ asset('storage/' . $item->image) }}">
+                                        </div>
+                                        <h3 class="types_text">{{ $item->name }}</h3>
+                                        <p class="looking_text">Rp. {{ $item->price }}</p>
+                                        <div class="read_bt"><a href="transaction/{{ $item->id }}">Pesan</a></div>    
                                     </div>
-                                    <h3 class="types_text">{{ $item->name }}</h3>
-                                    <p class="looking_text">Rp. {{ $item->price }}</p>
-                                    <div class="read_bt"><a href="#">Pesan</a></div>
-                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -256,6 +256,8 @@
     </div>
     <!-- copyright section end -->
     <!-- Javascript files-->
+
+
     <script src="{{ asset('home page') }}/js/jquery.min.js"></script>
     <script src="{{ asset('home page') }}/js/popper.min.js"></script>
     <script src="{{ asset('home page') }}/js/bootstrap.bundle.min.js"></script>

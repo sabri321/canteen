@@ -3,9 +3,8 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Backend\HistoryController;
+use App\Http\Controllers\Backend\TransactionController;
 use App\Http\Controllers\Frontend\ListProductController;
 use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
@@ -37,14 +36,12 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 
-
 //halaman dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::resource('/product', 'DashboardProductController')->middleware('session:Tenant');
 Route::get('/dashboard/administrator', [DashboardController::class, 'administrator'])->middleware('session:Administrator');
 Route::get('/dashboard/tenant', [DashboardController::class, 'tenant'])->middleware('session:Tenant');
 Route::get('/dashboard/member', [DashboardController::class, 'member'])->middleware('session:Member');
-
 
 //users
 Route::resource('/users', 'Backend\UserController')->middleware('session:Administrator');
@@ -61,14 +58,36 @@ Route::resource('/product', 'Backend\ProductController')->middleware('session:Te
 
 
 
+//transaction
+Route::get('/transaction/{id}', [TransactionController::class, 'index']);
+Route::post('/transaction/{id}', [TransactionController::class, 'pesan']);
+
+
+Route::get('/check-out', [TransactionController::class, 'check_out']);
+Route::delete('/check-out/{id}', [TransactionController::class, 'delete']);
+
+
+Route::get('/konfirmasi-check-out', [TransactionController::class, 'konfirmasi']);
+
+
+Route::get('/history', [HistoryController::class, 'index']);
+Route::get('/history/{id}', [HistoryController::class, 'detail']);
 
 
 
-//frontend
-Route::get('/list/product', [ListProductController::class, 'index']);
 
 
-// Route::get('/getme', [UserController::class, 'getme']);
+
+
+
+
+
+
+
+
+
+
+
 
 
 

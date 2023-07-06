@@ -43,77 +43,92 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="list/product">Product</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="shop.html">Information</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="blog.html">About</a>
-                        </li>
-                        @Auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dashboard"><i class="fa fa-home"aria-hidden="true"></i> Dashboard</a>
-                        </li>   
+                            @php
+                                use Illuminate\Support\Facades\Auth;
+                                $pesanan_utama = Auth::user()
+                                    ->transaction()
+                                    ->where('status', 0)
+                                    ->first();
+                                $notif = $pesanan_utama ? $pesanan_utama->detailtransaction->count() : 0;
+                            @endphp
 
-                        @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login"><span class="user_icon">
-                                <i class="fa fa-user"aria-hidden="true"></i></span>Login</a>
+                            <a class="nav-link" href="{{ url('check-out') }}">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="badge badge-danger">{{ $notif }}</span>
+                            </a>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/history"><i aria-hidden="true"></i>
+                                    History</a>
+                            </li>
+
                         </li>
+
+                        @Auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dashboard"><i class="fa fa-home"aria-hidden="true"></i>
+                                    Dashboard</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login"><span class="user_icon">
+                                        <i class="fa fa-user"aria-hidden="true"></i></span>Login</a>
+                            </li>
                         @endauth
                     </ul>
-                   
                 </div>
             </nav>
         </div>
-
     </div>
-    <!-- header section end -->
-    <!-- coffee section start -->
+
     <div class="coffee_section layout_padding">
-        <div class="container">
-            <div class="row">
-                <h1 class="coffee_taital">PRODUCT</h1>
-                <div class="bulit_icon"><img src="{{ asset('home page') }}/images/bulit-icon.png"></div>
-            </div>
-        </div>
-        <div class="coffee_section_2">
-            <div id="main_slider" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="container-fluid">
-                            <div class="row">
-                                @foreach ($product as $item)      
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="coffee_img"><img src="{{ asset('storage/' . $item->image) }}">
-                                    </div>
-                                    <h3 class="types_text">{{ $item->name }}</h3>
-                                    <p class="looking_text">Rp. {{ $item->price }}</p>
-                                    <div class="read_bt"><a href="#">Pesan</a></div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3><i class="fa fa-shopping-cart"></i> Detail Transaction</h3>
+                    @if(!empty($transaction))
+                        
+                    <table class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>name</th>
+                                <th>Jumlah</th>
+                                <th>Price</th>
+                                <th>Total Bayar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php $no = 1; ?>
+                            @foreach ($detail_transaction as $item)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $item->product->name }}</td>
+                                    <td>{{ $item->qty }}</td>
+                                    <td>Rp. {{ number_format($item->product->price) }}</td>
+                                    <td>Rp. {{ number_format($item->total_harga) }}</td>
+                                </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="4"><strong>Total Bayar :</strong></td>
+                                <td><strong>Rp. {{ number_format($transaction->total_bayar) }}</strong></td>
+                          
+                            </tr>
+                        </tbody>
+                    </table>
+                    @endif
                 </div>
-                <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-                <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-                    <i class="fa fa-arrow-right"></i>
-                </a>
             </div>
         </div>
     </div>
-    <!-- coffee section end -->
 
-    <!-- copyright section start -->
-    <div class="copyright_section mt-5">
+
+
+
+    <div class="copyright_section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
@@ -135,6 +150,7 @@
     </div>
     <!-- copyright section end -->
     <!-- Javascript files-->
+
     <script src="{{ asset('home page') }}/js/jquery.min.js"></script>
     <script src="{{ asset('home page') }}/js/popper.min.js"></script>
     <script src="{{ asset('home page') }}/js/bootstrap.bundle.min.js"></script>

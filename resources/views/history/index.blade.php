@@ -43,7 +43,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        
                         <li class="nav-item">
                             @php
                                 use Illuminate\Support\Facades\Auth;
@@ -51,29 +50,19 @@
                                     ->transaction()
                                     ->where('status', 0)
                                     ->first();
-                                if (!empty($pesanan_utama)) {
-                                    $notif = $pesanan_utama ? $pesanan_utama->detailtransaction->count() : 0;
-                                }
+                                $notif = $pesanan_utama ? $pesanan_utama->detailtransaction->count() : 0;
                             @endphp
-  
+
                             <a class="nav-link" href="{{ url('check-out') }}">
                                 <i class="fa fa-shopping-cart"></i>
-                                @if (!empty($notif))
-                                    <span class="badge badge-danger">{{ $notif }}</span>
-                                @endif
+                                <span class="badge badge-danger">{{ $notif }}</span>
                             </a>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="/history"><i aria-hidden="true"></i>
-                                    History</a>
-                            </li>
-
 
                         </li>
 
                         @Auth
                             <li class="nav-item">
-                                <a class="nav-link" href="/dashboard"><i aria-hidden="true"></i>
+                                <a class="nav-link" href="/dashboard"><i class="fa fa-home"aria-hidden="true"></i>
                                     Dashboard</a>
                             </li>
                         @else
@@ -91,55 +80,46 @@
     <div class="coffee_section layout_padding">
         <div class="col-md-12">
             <div class="card">
-                <div class="row">
-                    <h1 class="coffee_taital">PESANAN</h1>
-                    <div class="bulit_icon"><img src="{{ asset('home page') }}/images/bulit-icon.png"></div>
-                </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="{{ asset('storage/' . $product->image) }}" class="rounded mx-auto d-block"
-                                width="75%" alt="">
-                        </div>
-                        <div class="col-md-6 mt-5">
-                            <h2>{{ $product->name }}</h2>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>Price</td>
-                                        <td>:</td>
-                                        <td>Rp. {{ number_format($product->price) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Qty</td>
-                                        <td>:</td>
-                                        <td>{{ $product->qty }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jumlah Pesan</td>
-                                        <td>:</td>
-                                        <td>
-                                            <form action="/transaction/{{ $product->id }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <input type="text" name="jumlah_pesan" class="form-control"
-                                                    required="">
-                                                <button type="submit" class="btn btn-primary mt-2"><i
-                                                        class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
-                                            </form>
+                    <h3><i class="fa fa-shopping-cart"></i> History Transaction</h3>
+                    <table class="table table-striped">
 
-                                        </td>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Status</th>
+                                <th>Total Bayar</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                            <?php $no = 1; ?>
+                            @foreach ($transaction as $item)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                               
+                                <td>
+                                    @if ($item->status == 1)
+                                        Sudah Pesan & Belum bayar
+                                    @else
+                                        Sudah Bayar
+                                    @endif
+                                </td>
+                                <td>Rp. {{ number_format($item->total_bayar) }}</td>
+                                <td>
+                                    <a href="{{ url('history') }}/{{ $item->id }}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+
+
 
 
     <div class="copyright_section">
@@ -164,7 +144,6 @@
     </div>
     <!-- copyright section end -->
     <!-- Javascript files-->
-
 
     <script src="{{ asset('home page') }}/js/jquery.min.js"></script>
     <script src="{{ asset('home page') }}/js/popper.min.js"></script>
