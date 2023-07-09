@@ -32,11 +32,11 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->role == 'Administrator') {
-                return redirect('/dashboard/administrator');
+                return redirect('/dashboard/Administrator');
             } elseif ($user->role == 'Tenant') {
-                return redirect('/dashboard/tenant');
+                return redirect('/dashboard/Tenant');
             } elseif ($user->role == 'Member') {
-                return redirect('/dashboard/member');
+                return redirect('/');
             }
         }
 

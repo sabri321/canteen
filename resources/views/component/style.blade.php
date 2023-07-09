@@ -1,5 +1,6 @@
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="{{ asset('template') }}/img/favicon/favicon.ico" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -15,9 +15,4 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-
-    //relasi ke product ke category
-    // public function productcat(){
-    //     return $this->hasMany(Product::class);
-    // }
 }

@@ -105,12 +105,12 @@
                                         </g>
                                     </svg>
                                 </span>
-                                <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                                <span class="app-brand-text demo text-body fw-bolder">Canteen</span>
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Adventure starts here 🚀</h4>
-                        <p class="mb-4">Make your app management easy and fun!</p>
+                        <h4 class="mb-2">Welcome to SMAN 1 Mataram</h4>
+                        <p class="mb-4">Please Register in to your account and start ordering products</p>
 
                         <form id="formAuthentication" class="mb-3" action="/register" method="POST">
                             @csrf
@@ -144,12 +144,12 @@
                                     </label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary d-grid w-100">Sign up</button>
+                            <button type="submit" class="btn btn-warning d-grid w-100">Sign up</button>
                         </form>
 
                         <p class="text-center">
                             <span>Already have an account?</span>
-                            <a href="auth-login-basic.html">
+                            <a href="/login">
                                 <span>Sign in instead</span>
                             </a>
                         </p>
@@ -161,11 +161,6 @@
     </div>
 
     <!-- / Content -->
-
-    <div class="buy-now">
-        <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/" target="_blank"
-            class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
-    </div>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

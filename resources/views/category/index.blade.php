@@ -1,15 +1,15 @@
 @extends('component.main')
 @section('conten')
-    <h4 class="fw-bold py-1 mb-1">
-        <span class="text-muted fw-light">Data Category
+    <h4 class="fw-bold py-1">
+        <span class="text-muted fw-light">CATEGORY
     </h4>
-    <div class="fw-bold py-3 mb-4">
+    <div class="fw-bold py-1 mb-4">
         <div class="card">
             <h5 class="card-header">
                 <a href="/category/create" type="button" class="btn btn-secondary">Add</a>
             </h5>
-
             <div class="table-responsive text-nowrap">
+                
                 <table class="table">
                     <thead>
                         <tr>
@@ -39,6 +39,10 @@
                         @endforeach
                     </tbody>
                 </table>
+
+
+
+                
             </div>
         </div>
     </div>

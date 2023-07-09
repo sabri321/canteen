@@ -14,16 +14,16 @@ class DashboardController extends Controller
 
     public  function administrator()
     {
-        return view('masterdata/index');
+        return view('masterdata/Administrator');
     }
 
     public function tenant()
     {
-        return view('masterdata/index');
+        return view('masterdata/Tenant');
     }
 
     public  function member()
     {
-        return view('masterdata/index');
+        return view('masterdata/Member');
     }
 }

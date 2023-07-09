@@ -1,14 +1,10 @@
 @extends('component.main')
 @section('conten')
-    <h4 class="fw-bold py-1 mb-1">
-        <span class="text-muted fw-light">Data Users
+    <h4 class="fw-bold py-1">
+        <span class="text-muted fw-light">DATA USERS
     </h4>
-    <div class="fw-bold py-3 mb-4">
+    <div class="fw-bold py-1 mb-4">
         <div class="card">
-            <h5 class="card-header">
-                {{-- <a href="/users/create" type="button" class="btn btn-secondary">Add</a> --}}
-            </h5>
-
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead>
@@ -32,7 +28,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->username }}</td>
-                                <td>{{ $item->deposithistory->sum('nominal') }}</td>
+                                <td>{{ $item->deposit }}</td>
                                 <td>{{ $item->role }}</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" href="/users/{{ $item->id }}/edit">

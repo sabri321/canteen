@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Canteen</title>
 
     <meta name="description" content="" />
 
@@ -43,6 +43,8 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('template') }}/js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 </head>
 
 <body>
@@ -105,12 +107,12 @@
                                         </g>
                                     </svg>
                                 </span>
-                                <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                                <span class="app-brand-text demo text-body fw-bolder">Canteen</span>
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Welcome to Sneat! 👋</h4>
-                        <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                        <h4 class="mb-2">Welcome to SMAN 1 Mataram</h4>
+                        <p class="mb-4">Please log in to your account and start ordering products</p>
 
 
                         {{-- pengecekan pesan erorr ketika memasukkan username dan password --}}
@@ -127,16 +129,13 @@
                         <form id="formAuthentication" class="mb-3" action="/login" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email or Username</label>
+                                <label for="email" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username"
                                     placeholder="Enter your username" autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" for="password">Password</label>
-                                    <a href="auth-forgot-password-basic.html">
-                                        <small>Forgot Password?</small>
-                                    </a>
                                 </div>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control" name="password"
@@ -147,14 +146,19 @@
                             </div>
 
                             <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                                <button class="btn btn-warning d-grid w-100" type="submit">Sign in</button>
                             </div>
                         </form>
 
                         <p class="text-center">
-                            <span>New on our platform?</span>
+                            <span>Do you have an account?</span>
                             <a href="/register">
                                 <span>Create an account</span>
+                            </a>
+                            <br>
+                            <span>Back To</span>
+                            <a href="/">
+                                <span>Lading Page</span>
                             </a>
                         </p>
                     </div>
@@ -165,11 +169,6 @@
     </div>
 
     <!-- / Content -->
-
-    <div class="buy-now">
-        <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/" target="_blank"
-            class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
-    </div>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -190,6 +189,28 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    import Swal from 'sweetalert2/dist/sweetalert2.js';
+
+    export default {
+        methods: {
+            deleteItem() {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You will not be able to recover this item!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Perform delete action
+                    }
+                });
+            }
+        }
+    }
 </body>
 
 </html>

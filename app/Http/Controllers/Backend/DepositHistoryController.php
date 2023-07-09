@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DepositHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepositHistoryController extends Controller
 {
@@ -19,7 +20,7 @@ class DepositHistoryController extends Controller
         return view('deposit.index', compact('deposit'));
     }
 
-
+  
     public function create()
     {
         $deposit = DepositHistory::all();
@@ -73,12 +74,9 @@ class DepositHistoryController extends Controller
     {
         $deposit = DepositHistory::where('user_id', $id)->get();
         $totalDeposit = $deposit->sum('nominal');
-    
+
         return view('deposit.show', compact('deposit', 'totalDeposit'));
     }
-    
-
-
 
     public function edit(string $id)
     {

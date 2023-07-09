@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\DepositHistory;
 use App\Models\DetailTransaction;
 use App\Models\Product;
 use App\Models\Transaction;
@@ -21,70 +22,164 @@ class TransactionController extends Controller
     }
 
 
+    // public function pesan(Request $request, $id)
+    // {
+    //     $product = Product::where('id', $id)->first();
+
+    //     //validasi apakah melebihi qty (stok)
+    //     if ($request->jumlah_pesan > $product->qty) {
+    //         return redirect('transaction/' . $id);
+    //     }
+
+    //     //cek validasi pesanan
+    //     $cek_transaction = Transaction::where('user_id', Auth::user()->id)->where('status', 0)->first();
+
+
+    //     //simpan ke database transaction
+    //     if (empty($cek_transaction)) {
+    //         $transaction = new Transaction;
+    //         $transaction->user_id = Auth::user()->id;
+    //         $transaction->status = 0;
+    //         $transaction->total_bayar = 0;
+    //         $transaction->save();
+    //     }
+
+    //     //simpan ke database detail transaction
+    //     $transaction_new = Transaction::where('user_id', Auth::user()->id)->where('status', 0)->first();
+
+    //     //dek transaction detail
+    //     $cek_detail_transaction = DetailTransaction::where('product_id', $product->id)->where('transaction_id', $transaction_new->id)->first();
+    //     if (empty($cek_detail_transaction)) {
+    //         $detail_transaction = new DetailTransaction();
+    //         $detail_transaction->product_id = $product->id;
+    //         $detail_transaction->transaction_id = $transaction_new->id;
+    //         $detail_transaction->user_id = Auth::user()->id;
+    //         $detail_transaction->qty = $request->jumlah_pesan;
+    //         $detail_transaction->total_harga = $product->price * $request->jumlah_pesan;
+    //         $detail_transaction->save();
+    //     } else {
+    //         $detail_transaction = DetailTransaction::where('product_id', $product->id)->where('transaction_id', $transaction_new->id)->first();
+    //         $detail_transaction->qty = $detail_transaction->qty + $request->jumlah_pesan;
+
+
+    //         //harga sekarang
+    //         $price_detail_transaction_new = $product->price * $request->jumlah_pesan;
+    //         $detail_transaction->total_harga =  $detail_transaction->total_harga + $price_detail_transaction_new;
+    //         $detail_transaction->update();
+    //     }
+
+    //     //jumlah total
+    //     $transaction = Transaction::where('user_id', Auth::user()->id)->where('status', 0)->first();
+    //     $transaction->total_bayar =  $transaction->total_bayar + $product->price * $request->jumlah_pesan;
+    //     $transaction->update();
+
+    //     return redirect('check-out');
+    // }
+
     public function pesan(Request $request, $id)
     {
         $product = Product::where('id', $id)->first();
 
-        //validasi apakah melebihi qty (stok)
+        // Validasi apakah melebihi qty (stok)
         if ($request->jumlah_pesan > $product->qty) {
-            return redirect('transaction/' . $id);
+            return redirect('transaction/' . $id)->with('error', 'Jumlah pesanan melebihi stok yang tersedia.');
         }
 
-        //cek validasi pesanan
-        $cek_transaction = Transaction::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $user = auth()->user();
 
+        // Validasi apakah saldo cukup
+        $totalHarga = $product->price * $request->jumlah_pesan;
+        if ($user->deposit < $totalHarga) {
+            return redirect('transaction/' . $id)->with('error', 'Saldo Anda tidak cukup untuk melakukan pesanan.');
+        }
 
-        //simpan ke database transaction
-        if (empty($cek_transaction)) {
+        // Cek validasi pesanan
+        $transaction = Transaction::where('user_id', $user->id)->where('status', 0)->first();
+
+        // Simpan ke database transaction jika belum ada transaksi
+        if (empty($transaction)) {
             $transaction = new Transaction;
-            $transaction->user_id = Auth::user()->id;
+            $transaction->user_id = $user->id;
             $transaction->status = 0;
             $transaction->total_bayar = 0;
             $transaction->save();
         }
 
-        //simpan ke database detail transaction
-        $transaction_new = Transaction::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        // Simpan ke database detail transaction
+        $detailTransaction = DetailTransaction::where('product_id', $product->id)
+            ->where('transaction_id', $transaction->id)
+            ->first();
 
-        //dek transaction detail
-        $cek_detail_transaction = DetailTransaction::where('product_id', $product->id)->where('transaction_id', $transaction_new->id)->first();
-        if (empty($cek_detail_transaction)) {
-            $detail_transaction = new DetailTransaction();
-            $detail_transaction->product_id = $product->id;
-            $detail_transaction->transaction_id = $transaction_new->id;
-            $detail_transaction->user_id = Auth::user()->id;
-            $detail_transaction->qty = $request->jumlah_pesan;
-            $detail_transaction->total_harga = $product->price * $request->jumlah_pesan;
-            $detail_transaction->save();
+        if (empty($detailTransaction)) {
+            $detailTransaction = new DetailTransaction();
+            $detailTransaction->product_id = $product->id;
+            $detailTransaction->transaction_id = $transaction->id;
+            $detailTransaction->user_id = $user->id;
+            $detailTransaction->qty = $request->jumlah_pesan;
+            $detailTransaction->total_harga = $totalHarga;
+            $detailTransaction->save();
         } else {
-            $detail_transaction = DetailTransaction::where('product_id', $product->id)->where('transaction_id', $transaction_new->id)->first();
-            $detail_transaction->qty = $detail_transaction->qty + $request->jumlah_pesan;
-
-
-            //harga sekarang
-            $price_detail_transaction_new = $product->price * $request->jumlah_pesan;
-            $detail_transaction->total_harga =  $detail_transaction->total_harga + $price_detail_transaction_new;
-            $detail_transaction->update();
+            $detailTransaction->qty += $request->jumlah_pesan;
+            $detailTransaction->total_harga += $totalHarga;
+            $detailTransaction->save();
         }
 
-        //jumlah total
-        $transaction = Transaction::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        $transaction->total_bayar =  $transaction->total_bayar + $product->price * $request->jumlah_pesan;
-        $transaction->update();
+        // Jumlah total
+        $transaction->total_bayar += $totalHarga;
+        $transaction->save();
 
         return redirect('check-out');
     }
 
+
     public function check_out()
     {
-        $transaction = Transaction::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $user = auth()->user();
+        $transaction = Transaction::where('user_id', $user->id)->where('status', 0)->first();
         $detail_transaction = [];
+
         if (!empty($transaction)) {
             $detail_transaction = DetailTransaction::where('transaction_id', $transaction->id)->get();
+
+            // Periksa saldo member
+            $totalBayar = $transaction->total_bayar;
+            if ($user->deposit < $totalBayar) {
+                return redirect('transaction.check_out')->back()->with('error', 'Saldo Anda tidak cukup untuk melakukan pembayaran.');
+            }
+
+            // Kurangi saldo member
+            $user->deposit -= $totalBayar;
+            $user->save();
+
+            // Simpan potongan saldo ke dalam tabel deposit_histories
+            DepositHistory::create([
+                'user_id' => $user->id,
+                'nominal' => $totalBayar,
+                'status' => 0,
+                'deskripsi' => 'Saldo Terpotong ( Pembayaran Product )'
+            ]);
+
+            // Simpan potongan saldo ke user tenant (pemilik produk)
+            $tenantUser = User::where('role', 'Tenant')->first(); // Mengambil user tenant
+            $tenantUser->deposit += $totalBayar;
+            $tenantUser->save();
+
+            // Simpan potongan saldo ke dalam tabel deposit_histories untuk tenant
+            DepositHistory::create([
+                'user_id' => $tenantUser->id,
+                'nominal' => $totalBayar,
+                'status' => 1,
+                'deskripsi' => 'Saldo Masuk (Pembayaran Member)'
+            ]);
         }
 
         return view('transaction.check_out', compact('transaction', 'detail_transaction'));
     }
+
+
+
+
+
 
 
     public function delete($id)
@@ -103,11 +198,6 @@ class TransactionController extends Controller
 
     public function konfirmasi()
     {
-        // // Validasi saldo
-        // $user = User::find(Auth::user()->id);
-        // if ($user->deposit < $product->price * $request->jumlah_pesan) {
-        //     return redirect('check-out')->with('error', 'Saldo tidak mencukupi');
-        // }
 
         $transaction = Transaction::where('user_id', Auth::user()->id)->where('status', 0)->first();
         $transaction_id = $transaction->id;
@@ -121,7 +211,7 @@ class TransactionController extends Controller
             $product->update();
         }
 
-        
-        return redirect('history/'.$transaction_id);
+
+        return redirect('history/' . $transaction_id);
     }
 }

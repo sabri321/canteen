@@ -260,7 +260,7 @@ button {
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .show>.nav-link {
-    color: #4c4c4c;
+    color: #ffffff;
 }
 
 .navbar-brand {
@@ -318,7 +318,7 @@ button {
 .banner_taital {
     width: 100%;
     font-size: 50px;
-    color: #252525;
+    color: #d35400;
     font-weight: 800;
 }
 
@@ -326,7 +326,7 @@ button {
     width: 100%;
     float: left;
     font-size: 24px;
-    color: #e38773;
+    color: #d35400;
     font-weight: bold;
 }
 
@@ -334,7 +334,7 @@ button {
     width: 100%;
     float: left;
     font-size: 16px;
-    color: #4a4949;
+    color: #000000;
     margin: 0px;
 }
 
@@ -353,7 +353,7 @@ button {
     width: 100%;
     float: left;
     font-size: 18px;
-    background-color: #d48272;
+    background-color: #d35400;
     color: #fefefd;
     text-align: center;
     padding: 12px;
@@ -499,10 +499,10 @@ button {
     width: 100%;
     float: left;
     font-size: 16px;
-    color: #d78373;
+    color: #d35400;
     text-align: center;
     border-radius: 5px;
-    border: 1px solid #d78373;
+    border: 1px solid #d35400;
     text-transform: uppercase;
     padding: 8px;
 }
@@ -863,6 +863,7 @@ textarea#comment.massage-bt::placeholder {
     padding: 90px 0px 0px 0px;
 }
 
+
 .address_text {
     width: 100%;
     float: left;
@@ -991,7 +992,7 @@ textarea#comment.update_mail::placeholder {
     color: #ffffff;
     font-size: 16px;
     padding: 13px 0px 14px 0px;
-    background-color: #d07d6b;
+    background-color: #d35400;
     text-transform: uppercase;
     text-align: center;
 }
@@ -1010,7 +1011,7 @@ textarea#comment.update_mail::placeholder {
 .copyright_section {
     width: 100%;
     float: left;
-    background-color: #d07d6b;
+    background-color: #d35400;
     height: auto;
 }
 
