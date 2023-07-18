@@ -12,19 +12,26 @@ class Product extends Model
 
 
     //relasi product ke user ( satu product di miliki satu user)
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
     //relasi product ke category ( satu product di miliki satu category)
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
     //relasi product ke detail history (satu product memiliki banyak detail transaksi)
-    public function detailtransaksi(){
+    public function detailTransaction()
+    {
         return $this->hasMany(DetailTransaction::class);
     }
-    
 
+    //relasi product ke transaction (satu product di miliki satu transaksi)
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
 }

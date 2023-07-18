@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('deposit_histories', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('nominal');
+            $table->integer('nominal')->default(0);
             $table->integer('status');
             $table->text('deskripsi');
             $table->timestamps();

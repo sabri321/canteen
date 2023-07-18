@@ -4,7 +4,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\HistoryController;
+use App\Http\Controllers\Backend\LaporanController;
 use App\Http\Controllers\Backend\MemberController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\TenantController;
 use App\Http\Controllers\Backend\TransactionController;
 use App\Http\Controllers\Frontend\ListProductController;
@@ -45,6 +47,8 @@ Route::get('/dashboard/Administrator', [DashboardController::class, 'administrat
 Route::get('/dashboard/Tenant', [DashboardController::class, 'tenant'])->middleware('session:Tenant');
 Route::get('/dashboard/Member', [DashboardController::class, 'member'])->middleware('session:Member');
 
+
+
 //users
 Route::resource('/users', 'Backend\UserController')->middleware('session:Administrator');
 
@@ -83,6 +87,18 @@ Route::get('/tenant/serahkan-pesanan/{id}', [TenantController::class, 'serahkanP
 
 
 Route::get('/member/history-deposit', [MemberController::class, 'historyDeposit'])->name('member.history-deposit');
+
+
+
+Route::get('/laporan-transaksi', [LaporanController::class, 'index'])->name('laporan.transaksi');
+Route::post('/laporan-transaksi', [LaporanController::class, 'generate'])->name('laporan.transaksi.generate');
+
+
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
+Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+
 
 
 

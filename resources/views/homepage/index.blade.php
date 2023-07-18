@@ -43,7 +43,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Informasi</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -144,6 +144,7 @@
                                         <div class="coffee_img"><img src="{{ asset('storage/' . $item->image) }}">
                                         </div>
                                         <h3 class="types_text">{{ $item->name }}</h3>
+                                        <p class="owner_text text-warning">Tenant {{ $item->user->name }}</p>
                                         <p class="looking_text">Rp. {{ $item->price }}</p>
                                         @auth
                                         
@@ -158,12 +159,6 @@
                         </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-                <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-                    <i class="fa fa-arrow-right"></i>
-                </a>
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@
                                 </thead>
                                 <tbody>
                                     <?php $no = 1; ?>
-                                    @foreach ($detail_transaction as $item)
+                                    @foreach ($detail_transactions as $item)
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $item->product->name }}</td>

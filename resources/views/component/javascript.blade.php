@@ -9,6 +9,13 @@
 <!-- Vendors JS -->
 <script src="{{ asset('template') }}/vendor/libs/apex-charts/apexcharts.js"></script>
 
+{{-- sweetalert2 --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
+
 <!-- Main JS -->
 <script src="{{ asset('template') }}/js/main.js"></script>
 

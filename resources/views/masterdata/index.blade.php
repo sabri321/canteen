@@ -24,7 +24,7 @@
                         <img class="d-flex"
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAAAXNSR0IArs4c6QAAA2ZJREFUaEPtmknIjVEYx3+fhZIiMmUeMkQZy1SkrLAwhLAx9KUMWWChlHEhC1MW2GBFklBsKKEUGUNkliEWEiUsTP05n66+7973vOd9znu77j311q17zv/5/+7z3vOe85y3jiprdVXGSw34f894LcMRMzwdmA0MAbq6OK+AW8AR4GTE2H+lY2e4ObAYWAt0SgB6DWwC9gPfYsHHBO4DnAb6pzR/E5gGvEg5zqt7LOARwAWgpZeLxp0+AmOA+4Hjiw6LAdwWuAN0zmj2CTAU+JRR55/hMYAPAAuMTG4HVhlp/ZaxBtb/9R7QzMjkV6AX8NZIzxx4N7DcypzTWQdsttK0zLC03gAdrcw5ndvu2W0iawncLdajxM32ny2ILYGHATcsTDWhMdDqEWUJPAq4HAl4NHDFQtsSuCfwzMJUExo9rP4ulsDy+TMSsJlPMyEHegqYYgx9HJhhpWkNPBc4ZGXO6QhW0CbNGlgrrEdAbxN3f9bkg420oiwtJToVOGFkciJwzkgrGrCEdwErMhrdCGzIqNFouPUtXRhgn6t2hHjeBqwOGZg0JiawYs8DdgLtk4y475+7zYcqJVFabGCZbgEsBeqBAUUorgLaR++JQlkgmgdwIYMqloJW1VKLlJfAdeBpbNAG/byB8+IqGqcGXPYURDZQy7DRD6z9axdAJVtdmql92hfgvbt0EmG+v7bMsPasi4D5gD5bNO2vD7pHlmb0zM0CWOWX9cCsCGXfBsAfwGG31HychToLcGtgLzAni4GAscr4MiCoqBcK3B04C/QLMGwxREesk0IK9CHAWi2dATpYOM+gobNlbR8fptFIC6xCnda97dIEidhX0CoPv/ONkQa4FXAN6OsrnlM/eRoP6JGW2NIAHwVmJiqWp4MmzyU+oX2Bh7tdjY9mOfp8BwYBD5KC+wJfAsYmiZX5+2M+d6AP8DjgYplhfMNrfim5MPEBtijI+RrO2m8NsLWUiA+wznyTXjnKatRqvDYbehmmaEsC1kRw18pNTjptgA/FYiUBT3bvWuXk1STMSLc4alIsCXihezPOxElOIloraMYOAtYksCUno1ZhVgI7QoF11KG9biW1kkc0Sbd01QFPAHRVUjsP6Ar6D1cSqJfXpFvaS6SSOtWAKylbIV5rGQ751SppTNVl+BdQdXA9FsQhDQAAAABJRU5ErkJggg==" />
                         <span class="fw-semibold d-block mb-1" class="fas fa-user">MEMBER</span>
-                        <h1 class="card-title text-warning mb-2">87</h1>
+                        <h1 class="card-title text-warning mb-2">0</h1>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAAAXNSR0IArs4c6QAAA2ZJREFUaEPtmknIjVEYx3+fhZIiMmUeMkQZy1SkrLAwhLAx9KUMWWChlHEhC1MW2GBFklBsKKEUGUNkliEWEiUsTP05n66+7973vOd9znu77j311q17zv/5/+7z3vOe85y3jiprdVXGSw34f894LcMRMzwdmA0MAbq6OK+AW8AR4GTE2H+lY2e4ObAYWAt0SgB6DWwC9gPfYsHHBO4DnAb6pzR/E5gGvEg5zqt7LOARwAWgpZeLxp0+AmOA+4Hjiw6LAdwWuAN0zmj2CTAU+JRR55/hMYAPAAuMTG4HVhlp/ZaxBtb/9R7QzMjkV6AX8NZIzxx4N7DcypzTWQdsttK0zLC03gAdrcw5ndvu2W0iawncLdajxM32ny2ILYGHATcsTDWhMdDqEWUJPAq4HAl4NHDFQtsSuCfwzMJUExo9rP4ulsDy+TMSsJlPMyEHegqYYgx9HJhhpWkNPBc4ZGXO6QhW0CbNGlgrrEdAbxN3f9bkg420oiwtJToVOGFkciJwzkgrGrCEdwErMhrdCGzIqNFouPUtXRhgn6t2hHjeBqwOGZg0JiawYs8DdgLtk4y475+7zYcqJVFabGCZbgEsBeqBAUUorgLaR++JQlkgmgdwIYMqloJW1VKLlJfAdeBpbNAG/byB8+IqGqcGXPYURDZQy7DRD6z9axdAJVtdmql92hfgvbt0EmG+v7bMsPasi4D5gD5bNO2vD7pHlmb0zM0CWOWX9cCsCGXfBsAfwGG31HychToLcGtgLzAni4GAscr4MiCoqBcK3B04C/QLMGwxREesk0IK9CHAWi2dATpYOM+gobNlbR8fptFIC6xCnda97dIEidhX0CoPv/ONkQa4FXAN6OsrnlM/eRoP6JGW2NIAHwVmJiqWp4MmzyU+oX2Bh7tdjY9mOfp8BwYBD5KC+wJfAsYmiZX5+2M+d6AP8DjgYplhfMNrfim5MPEBtijI+RrO2m8NsLWUiA+wznyTXjnKatRqvDYbehmmaEsC1kRw18pNTjptgA/FYiUBT3bvWuXk1STMSLc4alIsCXihezPOxElOIloraMYOAtYksCUno1ZhVgI7QoF11KG9biW1kkc0Sbd01QFPAHRVUjsP6Ar6D1cSqJfXpFvaS6SSOtWAKylbIV5rGQ751SppTNVl+BdQdXA9FsQhDQAAAABJRU5ErkJggg=="/>
                         <span class="fw-semibold d-block mb-1">TENANT</span>
-                        <h1 class="card-title text-warning mb-2">14</h1>
+                        <h1 class="card-title text-warning mb-2">0</h1>
                     </div>
                 </div>
             </div>

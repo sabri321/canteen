@@ -34,6 +34,12 @@
                 </a>
             </li>
             <li class="menu-item">
+                <a href="/member/history-deposit" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-money"></i>
+                    <div data-i18n="Basic">Saldo</div>
+                </a>
+            </li>
+            <li class="menu-item">
                 <a href="/product" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-collection"></i>
                     <div data-i18n="Basic">Product</div>
@@ -42,7 +48,7 @@
             <li class="menu-item">
                 <a href="/tenant/pesanan" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-collection"></i>
-                    <div data-i18n="Basic">Notif Order</div>
+                    <div data-i18n="Basic">Order</div>
                     {{-- @if ($orderCount > 0)
                         <span class="badge bg-danger rounded-pill">{{ $orderCount }}</span>
                     @endif --}}
@@ -55,7 +61,12 @@
                     <div data-i18n="Basic">Riwayat Order</div>
                 </a>
             </li>
-            
+            <li class="menu-item">
+                <a href="{{ route('laporan.transaksi') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-history"></i>
+                    <div data-i18n="Basic">Laporan</div>
+                </a>
+            </li>
         @endif
 
 
@@ -92,12 +103,6 @@
                 </a>
             </li>
             <li class="menu-item">
-                <a href="#" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-collection"></i>
-                    <div data-i18n="Basic">History Transaction</div>
-                </a>
-            </li>
-            <li class="menu-item">
                 <a href="/deposit" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-money"></i>
                     <div data-i18n="Basic">Deposit</div>
@@ -116,7 +121,7 @@
             <li class="menu-item">
                 <a href="/member/history-deposit" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-money"></i>
-                    <div data-i18n="Basic">Riwayat Deposit</div>
+                    <div data-i18n="Basic">Saldo</div>
                 </a>
             </li>
             <li class="menu-item">

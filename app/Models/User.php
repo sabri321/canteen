@@ -20,7 +20,7 @@ class User extends Authenticatable
     }
 
     //relasi users ke deposit history ( satu user memiliki banyak hisyory)
-    public function deposithistory(){
+    public function depositHistory(){
         return $this->hasMany(DepositHistory::class);
     }
 
@@ -30,7 +30,7 @@ class User extends Authenticatable
     }
     
     //relasi users ke detail transaksi ( satu user memiliki banyak detail transaksi)
-    public function detailtransaction(){
+    public function detailTransaction(){
         return $this->hasMany(DetailTransaction::class);
     }
 

@@ -21,6 +21,8 @@ class UserController extends Controller
     }
 
 
+
+
     public function create()
     {
         return view('users.create');
@@ -33,8 +35,8 @@ class UserController extends Controller
             'name' => 'required',
             'username' => 'required|unique:users',
             'password' => 'required',
-            'address' => 'required',
-            'phone' => 'required',
+            'address' => 'nullable',
+            'phone' => 'nullable',
             'role' => 'required|in:Administrator,Tenant,Member',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -56,17 +58,14 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        
+
         $users = User::find($id);
         // Atau gunakan metode lain untuk mengambil data pengguna berdasarkan ID
 
         return view('users.edit', compact('users'));
     }
 
-    // function getme(){
-    //     $data = Auth::user();
-    //     return $data;
-    // }
+ 
 
 
     public function update(Request $request, User $user)

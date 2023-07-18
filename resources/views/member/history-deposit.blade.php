@@ -1,7 +1,7 @@
 @extends('component.main')
 @section('conten')
     <h4 class="fw-bold py-1">
-        <span class="text-muted fw-light">RIWAYAT DEPOSIT
+        <span class="text-muted fw-light">SALDO
     </h4>
     <div class="fw-bold py-1 mb-4">
         <div class="card">
