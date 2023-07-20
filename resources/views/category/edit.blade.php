@@ -25,16 +25,14 @@
                         </div>
                         <div class="row justify-content-end mt-3">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">UPDATE</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </form>
                 </div>
-
-
-
-                
             </div>
         </div>
     </div>
+
+    
 @endsection

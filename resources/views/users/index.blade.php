@@ -34,13 +34,12 @@
                                     <a class="btn btn-info btn-sm" href="/users/{{ $item->id }}/edit">
                                         <i class="bx bx-edit-alt me-1"></i>
                                     </a>
-                                    <form action="/users/{{ $item->id }}" method="post" class="d-inline">
+                                    <form action="/users/{{ $item->id }}" method="post" class="d-inline delete-form">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" value="delete" class="btn btn-danger btn-sm"><i
+                                        <button type="submit" value="delete" class="btn btn-danger btn-sm delete-btn"><i
                                                 class="bx bx-trash me-1"></i></button>
                                     </form>
-                                    
                                 </td>
                             </tr>
                         @endforeach
@@ -49,4 +48,49 @@
             </div>
         </div>
     </div>
+
+
+    {{-- awal sweet alert --}}
+    <!-- Tambahkan SweetAlert library dan jQuery di luar loop -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Tangkap event klik tombol hapus
+            $('.delete-btn').on('click', function(event) {
+                event.preventDefault(); // Mencegah form submit secara langsung
+                var form = $(this).closest('form'); // Dapatkan form terdekat dari tombol hapus yang diklik
+
+                // Tampilkan SweetAlert untuk konfirmasi hapus data user
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Konfirmasi',
+                    text: 'Apakah Anda yakin ingin menghapus data ini?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna menekan tombol "Hapus", submit form hapus
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+    @if (session('success'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+        <script>
+            // Tampilkan SweetAlert untuk pesan kesalahan
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
+
+    {{-- akhir sweet alert --}}
 @endsection

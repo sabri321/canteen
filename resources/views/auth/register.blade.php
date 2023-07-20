@@ -65,6 +65,10 @@
                         <h4 class="mb-2">Welcome to SMAN 1 Mataram</h4>
                         <p class="mb-4">Please Register in to your account and start ordering products</p>
 
+                       
+
+
+
                         <form id="formAuthentication" class="mb-3" action="/register" method="POST">
                             @csrf
                             <div class="mb-3">

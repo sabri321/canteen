@@ -12,10 +12,8 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('/auth/login');
+        return view('auth.login');
     }
-
-
 
     public function store(Request $request)
     {
@@ -32,17 +30,17 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->role == 'Administrator') {
-                return redirect('/dashboard/Administrator');
+                return redirect('/dashboard/Administrator')->with('success', 'Anda berhasil login.');
             } elseif ($user->role == 'Tenant') {
-                return redirect('/dashboard/Tenant');
+                return redirect('/dashboard/Tenant')->with('success', 'Anda berhasil login.');
             } elseif ($user->role == 'Member') {
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda berhasil login.');
             }
         }
 
-        return redirect('dashboard')->withErrors('Username dan password yang dimasukkan salah')->withInput();
+        // Jika username atau password salah, redirect ke halaman login dengan pesan error
+        return redirect()->back()->withErrors('Username dan password yang dimasukkan salah')->withInput();
     }
-
 
     public function logout(Request $request)
     {

@@ -1,5 +1,17 @@
 @extends('component.main')
 @section('conten')
+@if (session('success'))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <script>
+        // Tampilkan SweetAlert untuk pesan berhasil login
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses!',
+            text: '{{ session('success') }}',
+        });
+    </script>
+@endif
+
     <div class="col-lg-12 mb-4 order-0">
         <div class="card">
             <div class="d-flex align-items-end row">

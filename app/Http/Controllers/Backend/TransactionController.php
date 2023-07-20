@@ -28,12 +28,26 @@ class TransactionController extends Controller
     {
         $product = Product::where('id', $id)->first();
 
+
         // Validasi apakah melebihi qty (stok)
         if ($request->jumlah_pesan > $product->qty) {
             return redirect('transaction/' . $id)->with('error', 'Jumlah pesanan melebihi stok yang tersedia.');
         }
 
         $user = auth()->user();
+        $saldo = $user->deposit;
+
+        // Hitung total harga pesanan
+        $totalHarga = $product->price * $request->jumlah_pesan;
+
+        // Periksa saldo mencukupi atau tidak
+        if ($saldo < $totalHarga) {
+            return redirect('transaction/' . $id)->with('error', 'Saldo Anda tidak mencukupi untuk melakukan pemesanan.');
+        }
+
+
+        $user = auth()->user();
+
 
         // Cek validasi pesanan
         $transaction = Transaction::where('user_id', $user->id)->where('status', 0)->first();
@@ -70,7 +84,7 @@ class TransactionController extends Controller
         $transaction->total_bayar += $product->price * $request->jumlah_pesan;
         $transaction->save();
 
-        return redirect('check-out')->with('pesan', 'Pesanan berhasil ditambahkan ke keranjang.');
+        return redirect('check-out')->with('success', 'Pesanan berhasil ditambahkan ke keranjang.');
     }
 
 
@@ -91,8 +105,12 @@ class TransactionController extends Controller
         }
         // Tampilkan SweetAlert berhasil
 
+
         return view('transaction.check_out', compact('transaction', 'detail_transactions'));
     }
+
+
+
 
 
 
@@ -115,43 +133,43 @@ class TransactionController extends Controller
 
         $detailTransaction->delete();
 
-        return redirect('check-out')->with('success', 'Detail transaction has been deleted successfully.');
+        return redirect('check-out')->with('success', 'Pesanan has been deleted successfully.');
     }
 
 
     public function konfirmasi()
     {
         $user = Auth::user();
-    
+
         $transaction = Transaction::where('user_id', $user->id)->where('status', 0)->first();
         $transaction_id = $transaction->id;
         $transaction->status = 1;
         $transaction->update();
-    
+
         $detail_transactions = DetailTransaction::where('transaction_id', $transaction_id)->get();
-    
+
         // Potong saldo member
         $user->deposit -= $transaction->total_bayar;
         $user->save();
-    
+
         // Tambahkan saldo ke user tenant dan buat histori deposit
         foreach ($detail_transactions as $detail_transaction) {
             $product = Product::where('id', $detail_transaction->product_id)->first();
             $tenantUser = User::where('role', 'Tenant')->where('id', $product->user_id)->first();
-    
+
             if (!empty($tenantUser)) {
                 $total_harga = $detail_transaction->total_harga;
-    
+
                 // Perhitungan pembagian saldo berdasarkan harga produk
                 $saldo_per_tenant = $total_harga / $detail_transaction->qty;
-    
+
                 $tenantUser->deposit += $saldo_per_tenant;
                 $tenantUser->save();
-    
+
                 // Mengurangi stok atau qty produk
                 $product->qty -= $detail_transaction->qty;
                 $product->save();
-    
+
                 // Buat histori deposit untuk tenant
                 DepositHistory::create([
                     'user_id' => $tenantUser->id,
@@ -161,7 +179,7 @@ class TransactionController extends Controller
                 ]);
             }
         }
-    
+
         // Buat histori deposit untuk member
         DepositHistory::create([
             'user_id' => $user->id,
@@ -169,9 +187,7 @@ class TransactionController extends Controller
             'status' => 0,
             'deskripsi' => 'Saldo Terpotong (Pembayaran Product)'
         ]);
-    
+
         return redirect('history/' . $transaction_id);
     }
-    
-
 }

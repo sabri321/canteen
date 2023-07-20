@@ -50,4 +50,16 @@
             </div>
         </div>
     </div>
+
+    @if (session('error'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+        <script>
+            // Tampilkan SweetAlert untuk pesan kesalahan
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('error') }}',
+            });
+        </script>
+    @endif
 @endsection

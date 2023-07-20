@@ -11,10 +11,16 @@
                 
                 <div class="card-body">
                     @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+                    <script>
+                        // Tampilkan SweetAlert untuk pesan kesalahan
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses!',
+                            text: '{{ session('success') }}',
+                        });
+                    </script>
+                @endif
     
                     <form method="post" action="{{ route('deposit.store') }}" enctype="multipart/form-data">
                         @csrf
@@ -51,15 +57,10 @@
                         </div>
                         <div class="row justify-content-end mt-3">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </div>
                     </form>
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
                 </div>
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\DepositHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,6 +101,7 @@ class UserController extends Controller
         return redirect()->route('users.index', $user->id)->with('success', 'User updated successfully.');
     }
 
+    
     public function destroy(User $user)
     {
         // Jika terdapat gambar pengguna:
@@ -108,8 +110,11 @@ class UserController extends Controller
             Storage::delete($user->image);
         }
 
+        // Hapus data deposit history yang terkait dengan pengguna
+        DepositHistory::where('user_id', $user->id)->delete();
+
         // Hapus data pengguna dari database
-        User::destroy($user->id);
+        $user->delete();
 
         // Kembali ke halaman index dengan pesan sukses
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');

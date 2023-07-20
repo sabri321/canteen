@@ -20,9 +20,10 @@ class RegisterController extends Controller
             'username' => 'required|max:255|unique:users',
             'password' => 'required'
         ]);
-
+    
         $data['password'] = bcrypt($data['password']);
         User::create($data);
-        return redirect('/login')->with('oke', 'Register Berhasil. Silahkan Login');
+        return redirect('/login')->with('success', 'Register Berhasil. Silahkan Login');
     }
+    
 }

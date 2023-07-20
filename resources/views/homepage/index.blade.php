@@ -33,10 +33,17 @@
 </head>
 
 <body>
-    <!-- Button trigger modal -->
-{{-- <button type="button" class="btn btn-primary" >
-    Launch demo modal
-  </button> --}}
+    @if (session('success'))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <script>
+        // Tampilkan SweetAlert untuk pesan berhasil login
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses!',
+            text: '{{ session('success') }}',
+        });
+    </script>
+@endif
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

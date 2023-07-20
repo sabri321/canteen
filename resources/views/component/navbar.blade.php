@@ -60,15 +60,43 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-
-                        <form action="/logout" method="POST">
+                        <form id="logoutForm" action="/logout" method="POST">
                             @csrf
-                            <button type="submit" class="dropdown-item"> <i class="bx bx-power-off me-2"></i>
-
+                            <button type="submit" class="dropdown-item">
+                                <i class="bx bx-power-off me-2"></i>
                                 <span class="align-middle">Log Out</span>
                             </button>
                         </form>
                     </li>
+                    
+                    <!-- Pastikan Anda sudah memasang library SweetAlert dan jQuery -->
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    
+                    <script>
+                        // Tangkap form logout ketika disubmit
+                        document.getElementById('logoutForm').addEventListener('submit', function(event) {
+                            event.preventDefault(); // Mencegah form submit secara langsung
+                    
+                            // Tampilkan SweetAlert untuk konfirmasi logout
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Konfirmasi',
+                                text: 'Apakah Anda yakin ingin logout?',
+                                showCancelButton: true,
+                                confirmButtonText: 'Logout',
+                                cancelButtonText: 'Batal',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Jika pengguna menekan tombol "Logout", submit form logout
+                                    event.target.submit();
+                                }
+                            });
+                        });
+                    </script>
+                    
+                    
                 </ul>
             </li>
             <!--/ User -->

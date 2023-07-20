@@ -73,7 +73,7 @@ Route::get('/check-out', [TransactionController::class, 'check_out']);
 Route::delete('/check-out/{id}', [TransactionController::class, 'delete']);
 
 //konfirmasi
-Route::get('/konfirmasi-check-out', [TransactionController::class, 'konfirmasi']);
+Route::post('/konfirmasi-check-out', [TransactionController::class, 'konfirmasi']);
 
 //history
 Route::get('/history', [HistoryController::class, 'index']);

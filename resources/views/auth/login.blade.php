@@ -43,8 +43,6 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('template') }}/js/config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 </head>
 
 <body>
@@ -67,16 +65,28 @@
                         <h4 class="mb-2">Welcome to SMAN 1 Mataram</h4>
                         <p class="mb-4">Please log in to your account and start ordering products</p>
 
-
-                        {{-- pengecekan pesan erorr ketika memasukkan username dan password --}}
                         @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $item)
-                                        <li>{{ $item }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+                            <script>
+                                // Tampilkan SweetAlert untuk pesan kesalahan
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: '{{ $errors->first() }}',
+                                });
+                            </script>
+                        @endif
+
+                        @if (session('success'))
+                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+                            <script>
+                                // Tampilkan SweetAlert untuk pesan kesalahan
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Sukses!',
+                                    text: '{{ session('success') }}',
+                                });
+                            </script>
                         @endif
 
                         <form id="formAuthentication" class="mb-3" action="/login" method="POST">
@@ -143,27 +153,6 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-    import Swal from 'sweetalert2/dist/sweetalert2.js';
-
-    export default {
-        methods: {
-            deleteItem() {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: 'You will not be able to recover this item!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'No, cancel!',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Perform delete action
-                    }
-                });
-            }
-        }
-    }
 </body>
 
 </html>

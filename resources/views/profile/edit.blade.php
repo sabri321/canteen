@@ -60,4 +60,16 @@
         </div>
     </div>
     </div>
+
+    @if (session('success'))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <script>
+        // Tampilkan SweetAlert untuk pesan kesalahan
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses!',
+            text: '{{ session('success') }}',
+        });
+    </script>
+@endif
 @endsection
